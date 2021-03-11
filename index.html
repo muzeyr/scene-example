@@ -1,0 +1,1115 @@
+<html lang="en"><head>
+
+    <meta charset="UTF-8">
+    
+  <link rel="apple-touch-icon" type="image/png" href="https://cpwebassets.codepen.io/assets/favicon/apple-touch-icon-5ae1a0698dcc2402e9712f7d01ed509a57814f994c660df9f7a952f3060705ee.png">
+  <meta name="apple-mobile-web-app-title" content="CodePen">
+  
+  <link rel="shortcut icon" type="image/x-icon" href="https://cpwebassets.codepen.io/assets/favicon/favicon-aec34940fbc1a6e787974dcd360f2c6b63348d4b1f4e06c77743096d55480f33.ico">
+  
+  <link rel="mask-icon" type="" href="https://cpwebassets.codepen.io/assets/favicon/logo-pin-8f3771b1072e3c38bd662872f6b673a722f4b3ca2421637d5596661b4e2132cc.svg" color="#111">
+  
+  
+    <title>CodePen - Scene.js examples portfolio</title>
+    
+    
+    
+    
+  <style>
+  html, body {
+    position: relative;
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-weight: 300;
+    font-family: sans-serif;
+  }
+  .scene {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 0;
+      bottom: 0px;
+      overflow: hidden;        
+  }
+  
+  /* #scene2 */
+  #scene2 {
+      display: block;
+      background: #fff;
+  }
+  #scene2 .ruler {
+      position: absolute;
+      bottom: 50%;
+      width: 100%;
+      height: 130px;
+      border-left: 5px solid black;
+      border-right: 5px solid black;
+      margin-left: -5px;
+  }
+  #scene2 .line {
+      position: absolute;	
+      width: 100%;
+      height: 5px;
+      background: #00C4DF;
+  }
+  #scene2 .line-bottom {
+      bottom: 0;
+  }
+  #scene2 .pencil {
+      width: 50px;
+      position: absolute;
+      bottom: 50%;
+  }
+  #scene2 .webdesign {
+      position: absolute;
+      width: 60px;
+      left: 50%;
+      margin-left: -30px;
+      bottom: 50%;
+  }
+  #scene2 .webdesign-title {
+      position: absolute;
+      width: 100%;
+      text-align: center;
+      top: 52%;
+      font-size: 24px;
+      color: white;
+      opacity: 0;
+      transform: translateX(-30px);
+  }
+  #scene2 .compass {
+      position: absolute;
+      width: 80px;
+      height: 80px;
+      left: 0;
+      right: 0;
+      bottom: 50%;
+      margin: auto;
+      transform: rotate(-90deg);
+  }
+  #scene2 .compass .direction {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+  }
+  #scene2 .compass .direction:before {
+      position: absolute;
+      content: "";
+      position: absolute;
+      border-left: 5px solid transparent;
+      border-right: 5px solid transparent;
+      border-bottom: 10px solid white;
+      margin-top: -10px;
+      margin-left: -5px;
+      transform: rotate(90deg) translateY(-36px);
+      transform-origin: 5px 10px;
+  }
+  #scene2 .compass .needle {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      display: none;
+  }
+  #scene2 .compass .needle:before, #scene2 .compass .needle:after {
+      position: absolute;
+      content: "";
+      border-top: 13px solid transparent;
+      border-bottom: 13px solid transparent;
+      margin-top: -13px;
+  }
+  #scene2 .compass .needle:before {
+      border-right: 50px solid white;
+      left: -50px;
+  }
+  #scene2 .compass .needle:after {
+      border-left: 50px solid #F95E3F;	        
+  }
+  #scene2 .compass-title {
+      position: absolute;
+      bottom: 50%;
+      width: 220px;
+      text-align:center;
+      font-size: 24px;
+      color: white;
+      left: 0;
+      right: 0;
+      margin: auto;
+      clip: rect(0px, 220px, 0px, 0px);
+  }
+  .circle circle{
+      stroke-dasharray: 0, 1000;
+      stroke-width: 5;
+      stroke-linejoin: round;
+      stroke-dashoffset: 1;
+      
+      stroke: white;
+  }
+  
+  
+  
+  .webpage {
+      width: 300px;
+      height: 230px;
+      overflow: hidden;
+      position: absolute;
+      left: 0;
+      right: 0;
+      margin: auto;
+      top: 50%;
+      margin-top: -30px;
+      clip:rect(0px 300px 0px 0px);
+  }
+  .webpage-header {
+      position: absolute;
+      width: 100%;
+      height: 30px;
+      background: #DDDDDD;
+      border-radius: 10px 10px 0px 0px;
+      line-height: 30px;
+  }
+  .webpage-btns {
+      margin-left: 10px;
+  }
+  .webpage-header span {
+      display: inline-block;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      margin-left: 2px;
+  }
+  .webpage-header .close {
+      background: #F08F90;
+  }
+  .webpage-header .maximize {
+      background: #59DEA9;
+  }
+  .webpage-header .minimize {
+      background: #E8CB7D;
+  }
+  .webpage-contents {
+      position: absolute;
+      top: 30px;
+      width: 100%;
+      height: 200px;
+      background: #fff;
+      overflow: hidden;
+      transform-origin: 0% 0%;
+  }
+  .webpage-nav {
+      position: absolute;
+      width: 20%;
+      height: 100%;
+      background: #333333;
+  }
+  .webpage-article *{
+      transform-origin: 0% 0%;
+  }
+  .webpage-article {
+      position: absolute;
+      width: 60%;
+      top: 10%;
+      height: 90%;
+      left: 30%;
+  }
+  .webpage-article-header {
+      position: relative;
+      background: #000000;
+      border-radius: 3px;
+      height: 6px;
+      width: 100%;
+      
+  }
+  .webpage-article-image {
+      position: relative;
+      margin-top: 10px;
+      margin-bottom: 10px;
+      background: #E4B74F;
+      border-radius: 4px;
+      height: 80px;
+      width: 100%;
+      
+  }
+  .webpage-article-content {
+      position: relative;
+      margin-top: 6px;
+      background: #777;
+      border-radius: 5px;
+      height: 4px;
+      width: 100%;
+  }
+  .webpage-article-socials {
+      position: relative;
+      margin-top: 15px;
+      overflow: hidden;
+      height: 50px;
+  }
+  .webpage-article-socials .inner {
+      position: absolute;
+      width: 130px;
+      height: 100%;
+  }
+  .webpage-article-socials .inner * {
+      border-radius: 3px;
+      width: 15px;
+      height: 15px;
+      position: relative;
+      display: inline-block;
+  }
+  .webpage-article-socials .share {
+      width: 40px;
+      background: #69D696;
+  }
+  .webpage-article-socials .facebook {
+      background: #5F93E9;
+  }
+  .webpage-article-socials .twitter {
+      background: #87E3FC;
+  }
+  
+  .animation {
+  /*
+      position: absolute;
+      width: 100%;
+      height: 100%;
+  */
+  }
+  .animation-background {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: #FC6E51;
+      transform: translate(-120%);
+  }
+  .animation-background:before {
+      content: "";
+      right: 0%;
+      position: absolute;
+      background: inherit;
+      height: 100%;
+      width: 50%;
+      transform-origin: 100% 100%;
+      transform: skewX(-10deg);
+      box-shadow: 46px 0px 2px #fff;
+  }
+  .film {
+      position: absolute;
+      width: 320px;
+      height: 230px;
+      top:0;
+      right: 0;
+      left: 0;
+      bottom: 0;
+      margin: auto;
+  }
+  .film-circles {
+      position: absolute;
+      width: 230px;
+      height: 230px;
+      z-index: 2;
+      left: -50px;
+      
+  }
+  .film-circle {
+      position: absolute;
+      width: 230px;
+      height: 230px;
+      box-sizing: border-box;
+      border-style: solid;
+      margin: auto;
+      left: 0;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      border-radius: 50%;
+      transform: scale(0);
+  }
+  .film-circle1 {
+      border-width: 100px;
+      border-color: white;
+      z-index: 3;
+  }
+  .film-circle2 {
+      width: 150px;
+      height: 150px;
+      border-color: black;
+      background: black;
+  }
+  .film-rad {
+      position: absolute;
+      width: 32px;
+      height: 32px;
+      box-sizing: border-box;
+      margin: auto;
+      left: 0;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      border-radius: 50%;
+      transform: scale(0);
+      background: white;
+      z-index: 2;
+  }
+  .film-rad0 {
+      width: 20px;
+      height: 20px;
+  }
+  .film-flip {
+      position: absolute;
+      width: 200px;
+      padding: 5px 0px;
+      background: #000;
+      clip: rect(0px, 200px, 90px, 200px);
+      z-index: 0;
+      bottom: 50px;
+      left: 100px;
+  }
+  .film-title {
+      position: absolute;
+      width: 100%;
+      bottom:0;
+      text-align: center;
+      font-size: 24px;
+      color: white;
+      opacity: 0;
+      transform: translateX(-100px);
+  }
+  .film-flip .inner {
+      border-top: 3px dashed white;
+      border-bottom: 3px dashed white;
+      padding: 10px 5px;
+  }
+  .film-flip .film-scene {
+      border-radius: 5px;
+      margin:0px 10px;
+      width: 70px;
+      height: 50px;
+      background: #fff;
+      display: inline-block;
+  }
+  
+  
+  
+  
+  
+  /* #scene3 */
+  #scene3 {
+      display: none;
+      background: white;
+      transform: translateX(100%);
+      z-index: 4;
+  }
+  #scene3 .clappers {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      transform-origin: 0 0;
+      transform:scaleX(5) translateX(0%);
+      overflow: hidden;
+      z-index: 3;
+  }
+  #scene3 .clapper {
+      float: left;
+  /* 	        position: absolute; */
+  /*
+      top: 0;
+      left: 0;
+  */
+      width: 10%;
+      height: 100%;
+      background: white;
+      transform: skewX(30deg);
+  }
+  #scene3 .clapper:nth-child(odd) {
+      background: black;
+  }
+  #scene3 .blackpage {
+      position: absolute;
+      background: black;
+      width: 50%;
+      left: 100%;
+      top:0;
+      bottom:0;
+  }
+  #scene3 .clapper-page {
+      position: absolute;
+      width: 50%;
+      top: 0;
+      bottom: 0;
+      left: 0;
+  }
+  #scene3 .clapper-page .container {
+      position: absolute;
+      top:0;
+      left: 0;
+      right: 0;
+      bottom:0;
+      margin: auto;
+      width: 300px;
+      height: 240px;
+      text-align: center;
+      
+  }
+  #scene3 .clapper-page .container img {
+      width: 150px;
+      margin-bottom: 20px;
+  }
+  #scene3 .clapper-page .container h2 {
+      padding-bottom: 10px;
+  }
+  #scene3 .description-page {
+      position: absolute;
+      width: 50%;
+      top: 0;
+      bottom: 0;
+      right: 0;
+      z-index: 2;
+  }
+  #scene3 .description-page .container {
+      position: absolute;
+      min-width: 50%;
+      text-align: left;
+      position: absolute;
+      top:0;
+      left: 0;
+      right: 0;
+      bottom:0;
+      margin: auto;
+      width: 100%;
+      max-width: 320px;
+      height: 220px;
+  }
+  #scene3 .description-page .container h3 {
+      font-size: 30px;
+      margin: 15px 0px;
+  }
+  #scene3 .description-page .container h3, #scene3 .description-page .container a {
+      color: white;
+  }        
+  #scene3 .description-page .container ul {
+      padding-left: 20px;
+  }
+  #scene3 .description-page .container li {
+      list-style: disc;
+      color: white;
+      font-size: 15px;
+  }
+  #scene3 .description-page .container span {
+      font-size: 14px;
+  }
+  </style>
+  
+    <script>
+    window.console = window.console || function(t) {};
+  </script>
+  
+    
+    
+    <script>
+    if (document.location.search.match(/type=embed/gi)) {
+      window.parent.postMessage("resize", "*");
+    }
+  </script>
+  
+  
+  </head>
+  
+  <body translate="no">
+    <div id="scene2" class="scene" style="background: rgb(45, 179, 160);">
+    <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/873972/pencil.png" class="pencil" alt="pencil" style="left: 100%;">
+    <div class="line line-bottom" style="width: 100%; top: 100%; height: 100%;"></div>
+    <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/873972/webdesign.png" class="webdesign" alt="webdesign" style="transform: rotate(360deg); opacity: 0;">
+    <div class="webdesign-title" style="opacity: 0; transform: translateX(30px);">
+      Web Design
+    </div>
+    <div class="compass" style="transform: rotate(-90deg) translateX(100px);">
+      <svg class="circle" version="1.1" id="레이어_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="80px" height="80px" viewBox="0 0 100 100" enable-background="new 0 0 56.69 56.69" xml:space="preserve">
+        <circle fill="transparent" stroke="#000000" stroke-miterlimit="20" cx="50" cy="50" r="45" style="stroke-dasharray: 285, 1000;"></circle>
+      </svg>
+      <div class="directions" style="opacity: 1;">
+        <div class="direction direction-top" style="transform: rotate(360deg);"></div>
+        <div class="direction direction-right" style="transform: rotate(90deg);"></div>
+        <div class="direction direction-bottom" style="transform: rotate(180deg);"></div>
+        <div class="direction direction-left" style="transform: rotate(270deg);"></div>
+      </div>
+      <div class="needle" style="display: block; transform: scale(1) rotate(405deg);"></div>
+    </div>
+    <div class="compass-title" style="display: block; clip: rect(0px, 220px, 30px, 0px); transform: translateY(-50px);">Web Development</div>
+    <div class="webpage" style="clip: rect(0px, 300px, 230px, 0px); opacity: 0; transform: translateX(100px);">
+      <div class="webpage-header">
+        <div class="webpage-btns">
+          <span class="close"></span>
+          <span class="minimize"></span>
+          <span class="maximize"></span>
+        </div>
+      </div>
+      <div class="webpage-contents">
+        <div class="webpage-nav" style="transform: translateX(0%);">
+        </div>
+        <div class="webpage-article">
+          <div class="webpage-article-header" style="transform: scaleX(1);"></div>
+          <div class="webpage-article-image" style="transform: scale(1);"></div>
+          <div class="webpage-article-content webpage-article-content1" style="transform: scaleX(1);"></div>
+          <div class="webpage-article-content webpage-article-content2" style="transform: scaleX(1);"></div>
+          <div class="webpage-article-content webpage-article-content3" style="transform: scaleX(1);"></div>
+          <div class="webpage-article-socials" style="width: 100%;">
+            <div class="inner">
+              <div class="share"></div>
+              <div class="facebook"></div>
+              <div class="twitter"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="animation">
+      <div class="animation-background" style="transform: translateX(0%);">
+      </div>
+      <div class="film">
+        <div class="film-circles" style="transform: rotate(-360deg);">
+          <div class="film-circle1 film-circle" style="border-width: 0px; transform: scale(1); opacity: 0;"></div>
+          <div class="film-circle2 film-circle" style="transform: scale(1);"></div>
+          <div class="film-rad0 film-rad" style="transform: scale(1);"></div>
+          <div class="film-rad1 film-rad" style="transform: translate(50px, 0px) scale(1);"></div>
+          <div class="film-rad2 film-rad" style="transform: translate(25px, 43.3px) scale(1);"></div>
+          <div class="film-rad3 film-rad" style="transform: translate(-25px, 43.3px) scale(1);"></div>
+          <div class="film-rad4 film-rad" style="transform: translate(-50px, 0px) scale(1);"></div>
+          <div class="film-rad5 film-rad" style="transform: translate(-25px, -43.3px) scale(1);"></div>
+          <div class="film-rad6 film-rad" style="transform: translate(25px, -43.3px) scale(1);"></div>				
+        </div>
+        <div class="film-flip" style="transform: translate(0px); clip: rect(0px, 200px, 90px, 0px);">
+          <div class="inner">
+            <div class="film-scene"></div>
+            <div class="film-scene"></div>
+          </div>
+        </div>
+        <div class="film-title" style="opacity: 1; transform: translateX(0px);">Web Animation</div>
+      </div>
+    </div>
+  </div>
+  <div id="scene3" class="scene" style="display: block; transform: translate(0%);">
+    <div class="clapper-page">
+      <div class="container">
+        <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/873972/clapper.png" alt="scene.js">
+        <h2>Scene.js</h2>
+        <p>Make your homepage dynamic</p>
+      </div>
+    </div>
+    <div class="description-page">
+      <div class="container">
+        <h3>Download</h3>
+        <ul>
+          <li><a href="https://daybrush.com/scenejs/release/latest/dist/scene.js" target="_blank"><strong>Scene.js</strong> <span>un-minified</span></a></li>
+          <li><a href="https://daybrush.com/scenejs/release/latest/dist/scene.min.js" target="_blank"><strong>Scene.min.js</strong> <span>minified</span></a></li>
+        </ul>
+        <h3><a href="https://daybrush.com/scenejs/release/latest/doc" target="_blank">API</a></h3>
+        <h3><a href="https://github.com/daybrush/scenejs" target="_blank">Github</a></h3>
+      </div>
+    </div>
+    <div class="blackpage" style="left: 50%;">
+    </div>
+    <div class="clappers" style="width: 100%; transform: translateX(-100%);">
+      <div class="clapper clapper1"></div>
+      <div class="clapper clapper2"></div>
+      <div class="clapper clapper3"></div>
+      <div class="clapper clapper4"></div>
+      <div class="clapper clapper5"></div>
+      <div class="clapper clapper6"></div>
+      <div class="clapper clapper7"></div>
+      <div class="clapper clapper8"></div>
+      <div class="clapper clapper9"></div>
+      <div class="clapper clapper10"></div>			
+    </div>
+  </div>
+      <script src="https://cpwebassets.codepen.io/assets/common/stopExecutionOnTimeout-157cd5b220a5c80d4ff8e0e70ac069bffd87a61252088146915e8726e5d9f147.js"></script>
+  
+    <script src="https://daybrush.com/scenejs/release/latest/dist/scene.min.js"></script>
+        <script id="rendered-js">
+  var scene2 = new Scene();
+  var scene2_1 = new Scene();
+  var scene2_2 = new Scene();
+  var scene2_3 = new Scene();
+  var scene3 = new Scene();
+  
+  
+  scene2.load({
+    "#scene2 .line-bottom": {
+      0: {
+        width: "0%",
+        top: "50%",
+        height: "1%" },
+  
+      2: {
+        width: "100%",
+        height: "1%",
+        top: "50%" },
+  
+      3: {
+        height: "100%",
+        top: "0%" },
+  
+      8: {
+        top: "0%" },
+  
+      9: {
+        top: "100%" },
+  
+      options: {
+        easing: Scene.EASE_IN_OUT } },
+  
+  
+    "#scene2 .webdesign": {
+      0: {
+        transform: "rotate(0deg)",
+        opacity: 1 },
+  
+      0.5: {
+        opacity: 1 },
+  
+      1: {
+        transform: "rotate(360deg)",
+        opacity: 0 },
+  
+      options: {
+        easing: Scene.EASE_IN_OUT,
+        delay: 4 } },
+  
+  
+    "#scene2": {
+      3: {
+        background: "#fff" },
+  
+      "3>": {
+        background: "#2DB3A0" } },
+  
+  
+    "#scene2 .pencil": {
+      0: {
+        left: "0%" },
+  
+      2: {
+        left: "100%" },
+  
+      options: {
+        easing: Scene.EASE_IN_OUT } },
+  
+  
+    "#scene2 .webdesign-title": {
+      0: {
+        opacity: 0,
+        transform: "translateX(-30px)" },
+  
+      0.7: {
+        opacity: 1,
+        transform: "translateX(-0px)" },
+  
+      2: {
+        opacity: 1,
+        transform: "translateX(-0px)" },
+  
+      3: {
+        opacity: 0,
+        transform: "translateX(30px)" },
+  
+      options: {
+        easing: Scene.EASE_IN_OUT,
+        delay: 2 } },
+  
+  
+    options: {
+      selector: true } });
+  
+  
+  
+  scene2_1.load({
+    "#scene2 .compass": {
+      0: {
+        transform: "rotate(-90deg) translateX(0px)" },
+  
+      1: {
+        transform: "rotate(-90deg) translateX(100px)" },
+  
+      options: {
+        easing: Scene.EASE_IN_OUT,
+        delay: 2.5 } },
+  
+  
+  
+    "#scene2 .compass .circle circle": {
+      0: { "stroke-dasharray": "0 1000" },
+      2: { "stroke-dasharray": "285 1000" },
+      options: {
+        easing: Scene.EASE_IN_OUT } },
+  
+  
+    "#scene2 .compass .directions": {
+      0: "opacity: 0",
+      "0>": "opacity: 1" },
+  
+    "#scene2 .compass .direction.direction-top": {
+      0: { transform: "rotate(0deg)" },
+      2: {
+        transform: "rotate(360deg)" },
+  
+      options: {
+        easing: Scene.EASE_IN_OUT } },
+  
+  
+    "#scene2 .compass .direction.direction-right": {
+      0: { transform: "rotate(0deg)" },
+      2: { transform: "rotate(90deg)" },
+      options: {
+        easing: Scene.EASE_IN_OUT } },
+  
+  
+    "#scene2 .compass .direction.direction-bottom": {
+      0: { transform: "rotate(0deg)" },
+      2: { transform: "rotate(180deg)" },
+      options: {
+        easing: Scene.EASE_IN_OUT } },
+  
+  
+    "#scene2 .compass .direction.direction-left": {
+      0: { transform: "rotate(0deg)" },
+      2: { transform: "rotate(270deg)" },
+      options: {
+        easing: Scene.EASE_IN_OUT } },
+  
+  
+    "#scene2 .compass .needle": {
+      0.1: {
+        display: "block",
+        transform: "scale(0)" },
+  
+      0.5: {
+        transform: "rotate(0deg) scale(1)" },
+  
+      3: {
+        transform: "rotate(405deg)" },
+  
+      options: {
+        delay: 1.5,
+        easing: Scene.EASE_IN_OUT } },
+  
+  
+    "#scene2 .compass-title": {
+      0: {
+        display: "none" },
+  
+      0.1: {
+        display: "block",
+        clip: "rect(30px, 220px, 30px, 0px)",
+        transform: "translateY(-100px)" },
+  
+      1.2: {
+        clip: "rect(0px, 220px, 30px, 0px)",
+        transform: "translateY(-50px)" },
+  
+      options: {
+        easing: Scene.EASE_IN_OUT,
+        delay: 3 } },
+  
+  
+    options: {
+      selector: true } });
+  
+  
+  scene2_2.load({
+    "#scene2 .webpage-nav": {
+      0: {
+        transform: "translateX(-100%)" },
+  
+      1: {
+        transform: "translateX(0%)" },
+  
+      options: {
+        easing: Scene.EASE_IN_OUT,
+        delay: 0.8 } },
+  
+  
+    "#scene2 .webpage": {
+      0: {
+        clip: "rect(0px 300px 0px 0px)" },
+  
+      1: {
+        clip: "rect(0px 300px 230px 0px)" },
+  
+      6: {
+        opacity: 1,
+        transform: "translateX(0)" },
+  
+      7: {
+        opacity: 0,
+        transform: "translateX(100px)" },
+  
+      options: {
+        easing: Scene.EASE_IN_OUT } },
+  
+  
+    "#scene2 .webpage-article-header": {
+      0: {
+        transform: "scaleX(0)" },
+  
+      1: {
+        transform: "scaleX(1)" },
+  
+      options: {
+        delay: 1.8,
+        easing: Scene.EASE_IN_OUT } },
+  
+  
+    "#scene2 .webpage-article-image": {
+      0: {
+        transform: "scale(0)" },
+  
+      1: {
+        transform: "scale(1)" },
+  
+      options: {
+        delay: 2.3,
+        easing: Scene.EASE_IN_OUT } },
+  
+  
+    "#scene2 .webpage-article-content1": {
+      0: {
+        transform: "scaleX(0)" },
+  
+      1: {
+        transform: "scaleX(1)" },
+  
+      options: {
+        delay: 2.8 } },
+  
+  
+    "#scene2 .webpage-article-content2": {
+      0: {
+        transform: "scaleX(0)" },
+  
+      1: {
+        transform: "scaleX(1)" },
+  
+      options: {
+        delay: 3.3 } },
+  
+  
+    "#scene2 .webpage-article-content3": {
+      0: {
+        transform: "scaleX(0)" },
+  
+      1: {
+        transform: "scaleX(1)" },
+  
+      options: {
+        delay: 3.8 } },
+  
+  
+    "#scene2 .webpage-article-socials": {
+      0: {
+        width: "0%" },
+  
+      1: {
+        width: "100%" },
+  
+      options: {
+        delay: 4.3 } },
+  
+  
+    options: {
+      selector: true } });
+  
+  
+  scene2_3.load({
+    "#scene2 .animation-background": {
+      0: {
+        transform: "translateX(-120%)" },
+  
+      1.5: {
+        transform: "translateX(0%)" },
+  
+      options: {
+        easing: Scene.EASE_IN_OUT } },
+  
+  
+    "#scene2 .film-circle1": {
+      0: {
+        "border-width": "100px" },
+  
+      0.2: {
+        transform: "scale(0)" },
+  
+      0.75: {
+        opacity: 1 },
+  
+      1: {
+        opacity: 0,
+        "border-width": "0px",
+        transform: "scale(1)" },
+  
+      options: {
+        delay: 1,
+        easing: Scene.EASE_IN_OUT } },
+  
+  
+    "#scene2 .film-circle2": {
+      0: {
+        transform: "scale(0)" },
+  
+      1: {
+        transform: "scale(1)" },
+  
+      options: {
+        delay: 1,
+        easing: Scene.EASE_IN_OUT } },
+  
+  
+    "#scene2 .film-rad0": {
+      0: {
+        transform: "scale(0)" },
+  
+      1: {
+        transform: "scale(1)" },
+  
+      options: {
+        delay: 1.2,
+        timingFunction: Scene.EASE_IN_OUT } },
+  
+  
+    "#scene2 .film-circles": {
+      0: {
+        transform: "rotate(0deg)" },
+  
+      1: {
+        transform: "rotate(-360deg)" },
+  
+      options: {
+        delay: 3,
+        easing: Scene.EASE_IN_OUT } },
+  
+  
+    "#scene2 .film-flip": {
+      0: {
+        transform: "translate(-200px)",
+        clip: "rect(0px, 200px, 90px, 200px)" },
+  
+      1: {
+        transform: "translate(-0px)",
+        clip: "rect(0px, 200px, 90px, 0px)" },
+  
+      options: {
+        delay: 3,
+        easing: Scene.EASE_IN_OUT } },
+  
+  
+    "#scene2 .film-title": {
+      0: {
+        opacity: 0,
+        transform: "translateX(-100px)" },
+  
+      1: {
+        opacity: 1,
+        transform: "translateX(0px)" },
+  
+      options: {
+        delay: 3,
+        easing: Scene.EASE_IN_OUT } },
+  
+  
+    options: {
+      selector: true } });
+  
+  
+  
+  
+  
+  var x, y, rad;
+  for (i = 0; i < 6; i++) {if (window.CP.shouldStopExecution(0)) break;
+    rad = i * 60 / 180 * Math.PI;
+    y = (Math.sin(rad) * 50).toFixed(1) + "px";
+    x = (Math.cos(rad) * 50).toFixed(1) + "px";
+    scene2_3.newItem("#scene2 .film-rad" + (i + 1)).load({
+      0: {
+        transform: `translate(${x}, ${y}) scale(0)` },
+  
+      1: {
+        transform: "scale(1)" },
+  
+      options: {
+        delay: 1.2 + i * 0.2,
+        easing: Scene.EASE_IN_OUT,
+        selector: true } });
+  
+  
+  }window.CP.exitedLoop(0);
+  
+  
+  scene3.load({
+    "#scene3": {
+      0.05: {
+        display: "block",
+        transform: "translate(100%)" },
+  
+      1: {
+        transform: "translate(0%)" },
+  
+      options: {
+        easing: Scene.EASE_IN_OUT } },
+  
+  
+    "#scene3 .clappers": {
+      0: {
+        width: "500%",
+        transform: "translateX(0%)" },
+  
+      2: {
+        width: "100%",
+        transform: "translateX(-100%)" },
+  
+      options: {
+        delay: 0.5,
+        easing: Scene.EASE_IN_OUT } },
+  
+  
+    "#scene3 .blackpage": {
+      0: {
+        left: "100%" },
+  
+      1: {
+        left: "50%" },
+  
+      options: {
+        delay: 1.2,
+        easing: Scene.EASE_IN_OUT } },
+  
+  
+    options: {
+      selector: true } });
+  
+  
+  
+  const scenario = new Scene();
+  
+  scenario.append(scene2);
+  scenario.append(scene2_1);
+  scenario.append(scene2_2);
+  scenario.append(scene2_3);
+  scenario.append(scene3);
+  
+  scene2_1.setDelay(4);
+  scene2_2.setDelay(8);
+  scene2_3.setDelay(14);
+  scene3.setDelay(20);
+  
+  scenario.setTime(0);
+  scenario.play();
+  //# sourceURL=pen.js
+      </script>
+  
+    
+  
+  
+  
+  
+   
+  </body></html>

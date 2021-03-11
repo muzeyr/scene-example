@@ -1,0 +1,24 @@
+{
+  "name": "scene-example",
+  "version": "1.0.0",
+  "description": "scene-example # FFMPEG Kurulumu # Eğer local bin dosyası yok ise oluşturmak için     sudo mkdir -p /usr/local/bin # FFMPEG dosyalarını kopyalamak için      sudo cp ff* /usr/local/bin # kopyalandığını kontrol etmek için     ls /usr/local/bin #  sudo xattr -dr com.apple.quarantine /usr/local/bin/ff* # kontrol etmek için echo $PATH",
+  "main": "scene.js",
+  "dependencies": {
+    "@scenejs/render": "^0.10.2",
+    "scenejs": "^1.5.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/muzeyr/scene-example.git"
+  },
+  "author": "uzeyrozcan",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/muzeyr/scene-example/issues"
+  },
+  "homepage": "https://github.com/muzeyr/scene-example#readme"
+}
